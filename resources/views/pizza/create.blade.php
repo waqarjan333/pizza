@@ -19,47 +19,52 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Add Pizza') }}</div>
-                @if(count($errors) > 0)
-                <div class="alert alert-danger">
-                    @foreach ($errors->all() as $error)
-                        <p>{{ $error; }}</p>  
-                    @endforeach
-                </div>
-                @endif
-                <form action="{{ route('pizza.store') }}" method="post">@csrf
+                <form action="{{ route('pizza.store') }}" method="post" enctype="multipart/form-data">@csrf
 
                     <div class="card-body">
                         <div class="form-group mb-3">
                             <label for="name">Name : </label>
-                            <input type="text" class="form-control" name="name" placeholder="Enter Pizza Name">
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" placeholder="Enter Pizza Name">
+                            @error('name')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="description">Description : </label>
-                            <textarea class="form-control" name="description" rows="3"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3"></textarea>
+                            @error('description')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="small_pizza">Pizza Price: </label>
                             <div class="input-group">
-                                <input type="number" class="form-control" name="small_pizza_price" placeholder="Enter Small Pizza Price">
-                                <input type="number" class="form-control" name="medium_pizza_price" placeholder="Enter Small Pizza Price">
-                                <input type="number" class="form-control" name="large_pizza_price" placeholder="Enter Small Pizza Price">
+                                <input type="number" class="form-control @error('small_pizza_price') is-invalid @enderror" name="small_pizza_price" placeholder="Enter Small Pizza Price">
+                                <input type="number" class="form-control @error('medium_pizza_price') is-invalid @enderror" name="medium_pizza_price" placeholder="Enter Small Pizza Price">
+                                <input type="number" class="form-control @error('large_pizza_price') is-invalid @enderror" name="large_pizza_price" placeholder="Enter Small Pizza Price">
                             </div>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="category">Category</label>
-                            <select class="form-control" name="category">
+                            <select class="form-control @error('category') is-invalid @enderror" name="category">
                                 <option value="vegetarian">Vegetarian Pizza</option>
                                 <option value="nonvegetarian">Non Vegetarian Pizza</option>
                                 <option value="traditional">Traditional Pizza</option>
                             </select>
+                            @error('category')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
                             <label form="image">Image</label>
-                            <input type="file" name="image"class="form-control">
+                            <input type="file" name="image"class="form-control @error('image') is-invalid @enderror">
+                            @error('image')
+                                <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <button class="btn btn-primary btn-block float-right" type="submit" style="float: right">Save Pizza</button>
