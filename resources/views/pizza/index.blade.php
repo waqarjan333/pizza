@@ -5,7 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('All Pizza') }}</div>
+                <div class="card-header">{{ __('All Pizza') }}
+                <a class="btn btn-primary btn-sm" style="float: right" href="{{ route('pizza.create') }}">Add Pizza</a>
+                </div>
 
                 <div class="card-body">
                     @if (session('message'))
@@ -82,6 +84,7 @@
                             @endif
                         </tbody>
                         </table>
+                        {{ $pizzas->links() }}
                 </div>
             </div>
         </div>

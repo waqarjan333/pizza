@@ -5,6 +5,7 @@ use App\Http\Requests\PizzaStoreRequest;
 use App\Http\Requests\PizzaUpdateRequest;
 use Illuminate\Http\Request;
 use App\Models\Pizza;
+use Illuminate\Pagination\Paginator;
 class PizzaController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class PizzaController extends Controller
     public function index()
     {
         //
-        $pizzas = Pizza::all();
+        $pizzas = Pizza::paginate(10);
         return view('pizza.index', compact('pizzas'));
     }
 
