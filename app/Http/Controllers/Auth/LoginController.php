@@ -37,4 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    // public function redirectTo(){
+    //     if(auth()->user()->is_admin == 1){
+    //         redirect()->route('user.order')->with('message', 'Successfully Logged in!');
+    //     } else {
+    //         redirect('/home')->with('message', 'Successfully Logged in!');
+    //     }
+    // }
 }
