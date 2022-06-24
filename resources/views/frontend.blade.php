@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Pizza') }}</div>
+                <div class="card-header"> ({{ count($pizzas) }} Pizzas)</div>
 
                 <div class="card-body">
                     <div class="row">

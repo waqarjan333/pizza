@@ -36,6 +36,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','admin']], function () {
     //User Orders
 
     Route::get('/user/order', [App\Http\Controllers\UserOrderController::class, 'index'])->name('user.order');
+    Route::get('/customers', [App\Http\Controllers\UserOrderController::class, 'customers'])->name('customers');
     Route::put('/order/{id}/status', [App\Http\Controllers\UserOrderController::class, 'changeStatus'])->name('order.status');
 });
 

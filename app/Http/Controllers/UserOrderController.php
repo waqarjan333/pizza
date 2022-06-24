@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\User;
 class UserOrderController extends Controller
 {
     /**
@@ -88,5 +89,10 @@ class UserOrderController extends Controller
         $order = Order::find($id);
         Order::where('id',$id)->update(['status'=>$request->status]);
         return redirect()->route('user.order')->with('message','Order Status change to '.$request->status);
+    }
+
+    public function customers(){
+        $customers = User::where('is_admin', 0)->get();
+        return view('customers', compact('customers'));
     }
 }
